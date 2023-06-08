@@ -1,0 +1,258 @@
+ques3- WAP to check Palindrome or not:
+
+class Main
+{
+    static boolean isPalindrome(int n){
+       int rev=0;
+	   int temp=n;
+
+		while(n!=0){
+		int ld=n%10;
+		rev=rev*10+ld;
+		n=n/10;
+		} 
+		return rev==temp;
+    }
+	public static void main(String[] args) {
+		System.out.println("Hello World");
+		int n=1221;
+		System.out.println(isPalindrome(n));
+	}
+}
+
+==============================================================================================================
+ques1. WAP to check for duplicates in string
+
+public class RemoveDuplicates   
+{    
+    static void removeDuplicates(String str)   
+    {   
+        int index1 = 1;            
+        int index2 = 1;   
+        char arr[] = str.toCharArray();   
+             
+        while (index1 != arr.length)   
+        {   
+            if(arr[index1] != arr[index1-1])   
+            {   
+                arr[index2] = arr[index1];   
+                index2++;   
+            }   
+            index1++;   
+              
+        }   
+        
+        str = new String(arr);  
+        System.out.println(str.substring(0, index2));   
+    }   
+         
+    static String sortString(String str)   
+    {     
+       char temp[] = str.toCharArray();     
+       Arrays.sort(temp);   
+	str = new String(temp);     
+       return str;   
+    }   
+           
+    public static void main(String[] args)   
+    {   
+        String str = "My name is Stuti mishra";    
+        String newString = sortString(str);  
+        System.out.println(newString);  
+        removeDuplicates(newString);  
+    }   
+}  
+=============================================================================================================
+ques2. WAP to print Duplicates characters from the String.
+
+public class DuplicateCharacters {
+
+    public static void main(String[] args) {
+        Scanner s = new Scanner(System.in);
+        System.out.println("Enter String: ");
+        String str = s.nextLine();
+
+        for(int i=0;i<str.length()-1;i++)
+        {
+            for(int j=i+1;j<str.length();j++)
+
+            {
+            if(str.charAt(i)==str.charAt(j))
+            {
+
+                System.out.print(str.charAt(j));
+            }
+            }
+        }
+    }
+
+}
+======================================================================================
+ques 4. WAP to count the number of consonants, vowels, special characters in a String.
+
+public class Stuti {
+
+	static void countCharacterType(String str)
+	{
+		int vowels = 0, consonant = 0, specialChar = 0,
+			digit = 0;
+		for (int i=0;i<str.length();i++) {
+			
+			char ch = str.charAt(i);
+	
+			if ( (ch >= 'a' && ch <= 'z') ||
+				(ch >= 'A' && ch <= 'Z') ) {
+
+				ch = Character.toLowerCase(ch);
+	
+				if (ch == 'a' || ch == 'e' || ch == 'i' ||
+					ch == 'o' || ch == 'u')
+					vowels++;
+				else
+					consonant++;
+			}
+			else
+				specialChar++;
+		}
+		System.out.println("Vowels:"+vowels);
+		System.out.println("Consonant:"+consonant);
+		System.out.println("Special Character:"+specialChar);
+	}
+	
+	static public void main (String[] args)
+	{
+		String str = "i am Stuti and my age is 23 , i live @lucknow";	
+		countCharacterType(str);
+	}
+}
+==================================================================================================
+ques 5. WAP to check for Anagrams.
+
+public class AnagramCheck {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter string:");
+        String str1 = sc.nextLine();
+        boolean isAnagram = false;
+        if (str1.length() == str2.length()) {
+            int[] frequency = new int[26];
+            for (int i = 0; i < str1.length(); i++) {
+                frequency[str1.charAt(i) - 'a']++;
+                frequency[str2.charAt(i) - 'a']--;
+            }
+            for (int i = 0; i < 26; i++) {
+                if (frequency[i] != 0) {
+                    isAnagram = false;
+                    break;
+                } else {
+                    isAnagram = true;
+                }
+            }
+        }
+        if (isAnagram) {
+            System.out.println(str1 + " and " + str2 + " are anagrams.");
+        } else {
+            System.out.println(str1 + " and " + str2 + " are not anagrams.");
+        }
+    }
+}
+===================================================================================================
+ques 6. WAP to check for pangram
+
+public class Pangram
+{
+  public static void main (String args[])
+  {
+    Scanner sc = new Scanner (System.in);
+      System.out.print ("Enter the string: ");
+
+    String str = sc.nextLine ();
+
+    int n = str.length ();
+    int freq[] = new int[26];
+
+    for (int i = 0; i < 26; i++)
+      {
+
+	freq[i] = 0;
+      }
+
+    for (int i = 0; i < n; i++)
+      {
+	if (str.charAt (i) != ' ')
+	  {
+
+	    freq[str.charAt (i) - 'a']++;
+	  }
+      }
+    int temp = 0;
+    for (int i = 0; i < 26; i++)
+      {
+
+	if (freq[i] == 0)
+	  {
+	    temp = 1;
+	    break;
+	  }
+      }
+
+    if (temp == 1)
+      {
+	System.out.println ("The string is not a pangram string.");
+      }
+    else
+      {
+	System.out.println ("The string is a pangram string.");
+      }
+  }
+}
+=========================================================================================================
+ques 7. WAP to find if String contains all unique characters.
+
+class Stuti {
+	boolean uniqueCharacters(String str)
+	{
+			for (int i = 0; i < str.length(); i++)
+			for (int j = i + 1; j < str.length(); j++)
+				if (str.charAt(i) == str.charAt(j))
+					return false;
+		return true;
+	}
+
+	public static void main(String args[])
+	{
+		Stuti obj = new Stuti();
+		String input = "StutiandStuti";
+
+		if (obj.uniqueCharacters(input))
+			System.out.println("The String " + input + " has all unique characters");
+		else
+			System.out.println("The String " + input + " has duplicate characters");
+	}
+}
+=========================================================================================================
+ques 8. WAP to find the maximum occurring character in a String.
+
+public class Main {
+    public static void main(String[] args) {
+        String str = "Hello World!";
+        int count = 0;
+        char result = ' ';
+        Map<Character, Integer> map = new HashMap<>();
+        for (int i = 0; i < str.length(); i++) {
+            char ch = str.charAt(i);
+            if (map.containsKey(ch)) {
+                map.put(ch, map.get(ch) + 1);
+            } else {
+                map.put(ch, 1);
+            }
+            if (map.get(ch) > count) {
+                count = map.get(ch);
+                result = ch;
+            }
+        }
+        System.out.println("The maximum occurring character in the string is '" + result + "' with frequency " + count + ".");
+    }
+}
+
