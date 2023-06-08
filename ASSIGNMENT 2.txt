@@ -1,0 +1,321 @@
+Q1) WAP to find duplicates present in an array.
+
+import java.util.*;
+import java.io.*;
+
+public class Stuti {
+	static void findDuplicates(
+	int arr[],int len)
+	{
+		boolean flag=false;
+
+		ArrayList<Integer> al = new ArrayList<Integer>();
+
+		for (int i=0;i<len-1;i++) {
+			for (int j=i+1;j<len;j++) {
+				if (arr[i]==arr[j]) {
+					if(al.contains(arr[i])) {
+						break;
+					}
+					else {
+						al.add(arr[i]);
+						flag=true;
+					}
+				}
+			}
+		}
+
+		if (flag == true) {
+
+			System.out.print(al + " ");
+		}
+		else {
+			System.out.print(
+				"No duplicates present in arrays");
+		}
+	}
+
+	public static void main(String[] args)
+	{
+
+		int arr[] ={ 12, 11, 40, 12, 5, 5, 93, 2, 9, 7, 9, 2, 5, 12, 11 };
+		int n = arr.length;
+
+		findDuplicates(arr,n);
+	}
+}
+--------------------------------------------------------------------------------------------------------------------
+
+Q2)WAP to sort an array using QUICK SORT Algorithm.
+
+import java.util.*;
+import java.io.*;
+
+class QuickSort
+{
+	int subArray(int arr[], int low, int high)
+	{
+		int pivot = arr[high];
+		int i = (low-1); 
+		for (int j=low; j<high; j++)
+		{
+			if (arr[j]<= pivot)
+			{
+				i++;
+
+				int temp= arr[i];
+				arr[i]= arr[j];
+				arr[j]= temp;
+			}
+		}
+		int temp= arr[i+1];
+		arr[i+1]= arr[high];
+		arr[high]= temp;
+
+		return i+1;
+	}
+
+
+	void sort(int arr[], int low, int high)
+	{
+		if (low < high)
+		{
+			int pi= subArray(arr, low, high);
+
+			sort(arr, low, pi-1);
+			sort(arr, pi+1, high);
+		}
+	}
+
+	static void display(int arr[])
+	{
+		int n = arr.length;
+		for (int i=0; i<n; ++i)
+			System.out.print(arr[i]+" ");
+		System.out.println();
+	}
+
+	public static void main(String args[])
+	{
+		int arr[] = {10, 9, 1, 5, 15, 4, 7, 18, 20, 8};
+		int n = arr.length;
+
+		QuickSort obj = new QuickSort();
+		obj.sort(arr, 0, n-1);
+
+		System.out.println("Sorted array is:	");
+		display(arr);
+	}
+}
+----------------------------------------------------------------------------------------------------------------
+
+Q3)WAP to sort an array using BUBBLE SORT Algorithm.
+
+import java.util.*;
+import java.io.*;
+
+class Stuti {
+	
+	static void bubbleSort(int arr[], int n)
+	{
+		int i, j, temp;
+		boolean flag;
+		for (i = 0; i < n - 1; i++) {
+			flag = false;
+			for (j = 0; j < n - i - 1; j++) {
+				if (arr[j] > arr[j + 1]) {
+					
+					temp= arr[j];
+					arr[j]= arr[j + 1];
+					arr[j + 1] = temp;
+					flag= true;
+				}
+			}
+			if (flag== false)
+				break;
+		}
+	}
+
+	static void display(int arr[], int size)
+	{
+		int i;
+		for (i = 0; i < size; i++)
+			System.out.print(arr[i] + " ");
+		System.out.println();
+	}
+
+	public static void main(String args[])
+	{
+		int arr[] = { 64, 12, 22, 11, 90, 76, 34, 98, 54, 32};
+		int n = arr.length;
+		bubbleSort(arr, n);
+		System.out.println("Sorted array: ");
+		display(arr, n);
+	}
+}
+--------------------------------------------------------------------------------------------------------------------
+
+Q4)WAP to sort an array using MERGE SORT Algorithm.
+
+import java.io.*;
+
+class MergeSort {
+
+	void merge(int arr[], int l, int m, int r)
+	{
+		int n1= m - l + 1;
+		int n2= r - m;
+
+		int L[] = new int[n1];
+		int R[] = new int[n2];
+
+		for (int i= 0;i < n1;++i)
+			L[i] = arr[l + i];
+		for (int j= 0;j <n2; ++j)
+			R[j] = arr[m + 1 + j];
+
+		int i= 0,j = 0;
+
+		int k = l;
+		while (i< n1 && j< n2) {
+			if (L[i] <= R[j]) {
+				arr[k] = L[i];
+				i++;
+			}
+			else {
+				arr[k] = R[j];
+				j++;
+			}
+			k++;
+		}
+
+		while (i < n1) {
+			arr[k] = L[i];
+			i++;
+			k++;
+		}
+
+		while (j < n2) {
+			arr[k] = R[j];
+			j++;
+			k++;
+		}
+	}
+
+	void sort(int arr[], int l, int r)
+	{
+		if (l < r) {
+
+			int m = l + (r - l) / 2;
+
+			sort(arr, l, m);
+			sort(arr, m + 1, r);
+
+			merge(arr, l, m, r);
+		}
+	}
+
+	static void display(int arr[])
+	{
+		int n = arr.length;
+		for (int i = 0; i < n; ++i)
+			System.out.print(arr[i] + " ");
+		System.out.println();
+	}
+
+	public static void main(String args[])
+	{
+		int arr[] = { 12, 11, 6, 9, 3, 7, 13, 5};
+
+		System.out.println("Given array is");
+		display(arr);
+
+		MergeSort obj = new MergeSort();
+		obj.sort(arr, 0, arr.length - 1);
+
+		System.out.println("\nSorted array is");
+		display(arr);
+	}
+}
+------------------------------------------------------------------------------------------------------------------
+
+Q5)WAP to sort an array using SELECTION SORT Algorithm.
+
+import java.io.*;
+public class SelectionSort
+{
+	void sort(int arr[])
+	{
+		int n = arr.length;
+		for (int i=0; i<n-1;i++)
+		{
+			int min_index = i;
+			for (int j = i+1;j<n; j++)
+				if (arr[j]<arr[min_index])
+					min_index = j;
+
+			int temp = arr[min_index];
+			arr[min_index] = arr[i];
+			arr[i] = temp;
+		}
+	}
+
+	void display(int arr[])
+	{
+		int n = arr.length;
+		for (int i=0; i<n; ++i)
+			System.out.print(arr[i]+" ");
+		System.out.println();
+	}
+	public static void main(String args[])
+	{
+		SelectionSort obj = new SelectionSort();
+		int arr[] = {64,25,12,23,78,43,76,98,22,11};
+		obj.sort(arr);
+		System.out.println("Sorted array");
+		ob.display(arr);
+	}
+}
+--------------------------------------------------------------------------------------------------------------------
+
+Q6)WAP to check whether an array is the subset of another array.
+
+import java.io.*;
+import java.util.*;
+
+class Stuti {
+	public static void main(String[] args)
+	{
+
+		int arr1[] = { 19, 10, 13, 21, 13, 7, 9, 8 };
+		int arr2[] = { 1, 13, 8, 21 };
+		int m = arr1.length;
+		int n = arr2.length;
+
+		Set<Integer> s = new HashSet<Integer>();
+		for(int i= 0; i< m;i++) {
+			s.add(arr1[i]);
+		}
+		int p = s.size();
+		for (int i = 0; i < n; i++) {
+			s.add(arr2[i]);
+		}
+
+		if (s.size() == p) {
+			System.out.println("arr2[] is subset of arr1[] "
+							+ "\n");
+		}
+		else {
+			System.out.println(
+				"arr2[] is not subset of arr1[] "
+				+ "\n");
+		}
+	}
+}
+--------------------------------------------------------------------------------------------------------------------
+							THE END
+
+
+
+
+
